@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cat_Mouse.Models
 {
+    /// <summary>
+    /// Ответ на успешную регистрацию 
+    /// </summary>
     public class ResponseRegistrationOrder
     {
         public string orderId { get; set; }

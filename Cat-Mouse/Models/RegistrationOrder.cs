@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Cat_Mouse.Models
 {
+    /// <summary>
+    /// Регистрация заказа 
+    /// </summary>
     public class RegistrationOrder
     {
         public int Id { get; set; }

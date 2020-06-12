@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace Cat_Mouse.Controllers
 {
+    /// <summary>
+    /// Главная страница для получения статуса и пожертвования.
+    /// </summary>
     public class InvoicePaymentController : Controller
     {
         private readonly AddressSite addressSite;
@@ -30,6 +33,10 @@ namespace Cat_Mouse.Controllers
             this.applicationDb = applicationDb;
         }
 
+        /// <summary>
+        /// Просмотр всех пожертвований
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             var model = new RegistrationOrderViewModel();
@@ -37,6 +44,11 @@ namespace Cat_Mouse.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получение статуса по OrderId
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public async Task<IActionResult> GetStatusOrderById(string orderId)
         {
             var model = new
@@ -54,6 +66,11 @@ namespace Cat_Mouse.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Пожертвование
+        /// </summary>
+        /// <param name="registrationOrder"></param>
+        /// <returns></returns>
         public async Task<IActionResult> CreateOrder(RegistrationOrder registrationOrder)
         {
             if (ModelState.IsValid && registrationOrder.Amount > 0)
@@ -86,7 +103,10 @@ namespace Cat_Mouse.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        /// <summary>
+        /// УСпешная страница.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Success()
         {
             return View();
