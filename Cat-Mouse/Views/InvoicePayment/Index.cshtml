@@ -7,7 +7,7 @@
     <div asp-validation-summary="All"></div>
     <div class="form-group">
         <label asp-for="@Model.Amount"></label>
-        <input asp-for="@Model.Amount"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+        <input asp-for="@Model.Amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
         <span asp-validation-for="@Model.Amount"></span>
     </div>
     <div class="form-group">
@@ -19,6 +19,10 @@
 <ul class="list-group">
     @foreach (var item in Model.RegistrationOrders)
     {
-        <li class="list-group-item">@item.Description       ||    @item.Amount</li>
+        <li class="list-group-item">
+            @item.Description       ||    @item.Amount
+            <a asp-action="GetStatusOrderById" asp-route-orderId="@item.OrderId"></a>
+        </li>
+
     }
 </ul>
