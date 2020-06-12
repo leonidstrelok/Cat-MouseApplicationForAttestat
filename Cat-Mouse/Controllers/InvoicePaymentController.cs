@@ -21,7 +21,6 @@ namespace Cat_Mouse.Controllers
     {
         private readonly AddressSite addressSite;
         private readonly AuthorizeConfiguration authorizeData;
-        private const string uri = "http://attest.turkmen-tranzit.com";
         private readonly ApplicationDbContext applicationDb;
         private const string contentType = "application/json";
         public InvoicePaymentController(IOptions<AddressSite> options, IOptions<AuthorizeConfiguration> auhtorizeOptions, ApplicationDbContext applicationDb)
@@ -35,7 +34,6 @@ namespace Cat_Mouse.Controllers
         {
             var model = new RegistrationOrderViewModel();
             model.RegistrationOrders = await applicationDb.RegistrationOrders.ToListAsync();
-
             return View(model);
         }
 
@@ -45,12 +43,13 @@ namespace Cat_Mouse.Controllers
             {
                 userName = authorizeData.UserName,
                 password = authorizeData.Password,
-                orderId = orderId
+                orderId
             };
             using var httpClient = new HttpClient();
             var json = JsonSerializer.Serialize(model);
             var httpContent = new StringContent(json, Encoding.UTF8, contentType);
-            var res = await httpClient.PostAsync(addressSite.RegistrationInovicePayment, httpContent);
+            var res = await httpClient.PostAsync(addressSite.StatusInovicePayment, httpContent);
+            var response = await res.Content.ReadAsStringAsync();
 
             return View();
         }
